@@ -1,0 +1,61 @@
+# Servo Tür Auf
+
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(37, GPIO.OUT)
+rotation = 5
+counter = 1
+pwm = GPIO.PWM(37, 60)
+pwm.start(0)
+def SetAngle(angle):
+    duty = angle / 6
+    GPIO.output(37, False)
+    pwm.ChangeDutyCycle(0)
+    sleep(1)
+    GPIO.output(37, True)
+    pwm.ChangeDutyCycle(duty)
+
+angle = 1
+for x in range(0,47):
+    SetAngle(angle)
+    angle = 60
+    sleep(0.2)
+    print("Rotation ",counter,"of 47")
+    counter+=1
+pwm.stop()
+GPIO.cleanup()
+
+# Servo Tür Zu
+
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(37, GPIO.OUT)
+rotation = 5
+counter = 1
+pwm = GPIO.PWM(37, 78)
+pwm.start(0)
+def SetAngle(angle):
+    duty = angle / 6
+    GPIO.output(37, False)
+    pwm.ChangeDutyCycle(0)
+    sleep(1)
+    GPIO.output(37, True)
+    pwm.ChangeDutyCycle(duty)
+
+angle = 1
+for x in range(0,13):
+    SetAngle(angle)
+    angle = 60
+    sleep(2)
+    print("Rotation ",counter,"of 15")
+    counter+=1
+pwm.stop()
+GPIO.cleanup()
+
+
+
+
